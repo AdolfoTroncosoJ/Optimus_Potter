@@ -4,16 +4,16 @@
 ### Shivam Desai (shivamdesaixda@gmail.com)
 ### A custom build script to build zImage & DTB(Anykernel2 method)
 
-set -e
+#set -e
 
 ## Copy this script inside the kernel directory
-KERNEL_DIR=$PWD
-KERNEL_TOOLCHAIN=$HOME/Android/Wally/gcc/arm-cortex_a53-linux-gnueabihf/bin/arm-eabi-
+KERNEL_DIR=/home/gtrcraft/data/kernel/optimus
+KERNEL_TOOLCHAIN=$HOME/data/kernel/prebuilts/arm-eabi-5.x/bin/arm-eabi-
 KERNEL_DEFCONFIG=potter_defconfig
 DTBTOOL=$KERNEL_DIR/Dtbtool/
-JOBS=8
+JOBS=28
 ANY_KERNEL2_DIR=$KERNEL_DIR/AnyKernel2/
-FINAL_KERNEL_ZIP=Optimus-R4-Potter.zip
+FINAL_KERNEL_ZIP=Optimus-R2-Potter.zip
 
 # Clean build always lol
 echo "**** Cleaning ****"
@@ -51,8 +51,8 @@ cp $KERNEL_DIR/arch/arm/boot/dtb $ANY_KERNEL2_DIR/
 echo "**** Time to zip up! ****"
 cd $ANY_KERNEL2_DIR/
 zip -r9 $FINAL_KERNEL_ZIP * -x README $FINAL_KERNEL_ZIP
-rm -rf $HOME/Android/Wally/$FINAL_KERNEL_ZIP
-cp $HOME/Android/Wally/kernel-msm/AnyKernel2/$FINAL_KERNEL_ZIP $HOME/Android/Wally/$FINAL_KERNEL_ZIP
+rm -rf $HOME/data/kernel/$FINAL_KERNEL_ZIP
+cp $HOME/data/kernel/optimus/AnyKernel2/$FINAL_KERNEL_ZIP $HOME/data/kernel/$FINAL_KERNEL_ZIP
 
 echo "**** Good Bye!! ****"
 cd $KERNEL_DIR
